@@ -11,8 +11,8 @@ const WorksheetGrid = ({ grid, showAnswers = false }: WorksheetGridProps) => {
   const sums = showAnswers ? computeColumnSums(grid) : null;
 
   return (
-    <div className="mb-6">
-      <table className="border-collapse border-2 border-grid-border w-full font-mono mx-auto">
+    <div className="mb-6 overflow-x-auto">
+      <table className="border-collapse border-2 border-grid-border min-w-full font-mono mx-auto">
         <tbody>
           {grid.numbers.map((row, rIdx) => (
             <tr key={rIdx}>

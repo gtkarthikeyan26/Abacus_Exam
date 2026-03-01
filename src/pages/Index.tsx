@@ -110,7 +110,7 @@ const Index = () => {
   }, [config.title, showAnswerKey]);
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
+    <div className="min-h-screen bg-background py-4 px-3 sm:py-8 sm:px-4 flex flex-col gap-6">
       <WorksheetControls
         config={config}
         onConfigChange={handleConfigChange}

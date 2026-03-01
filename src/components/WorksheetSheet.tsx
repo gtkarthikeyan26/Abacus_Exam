@@ -18,7 +18,7 @@ const WorksheetSheet = forwardRef<HTMLDivElement, WorksheetSheetProps>(
     return (
       <div
         ref={ref}
-        className="print-sheet bg-card w-[210mm] min-h-[297mm] mx-auto shadow-lg p-[12mm_15mm] font-sans overflow-hidden"
+        className="print-sheet bg-card w-full max-w-[210mm] min-h-[297mm] mx-auto shadow-lg p-4 sm:p-6 md:p-[12mm_15mm] font-sans overflow-hidden"
       >
         {/* Header */}
         <div className="text-center mb-1">
@@ -37,8 +37,8 @@ const WorksheetSheet = forwardRef<HTMLDivElement, WorksheetSheetProps>(
 
         {/* Info Fields */}
         {!isAnswerKey && (
-          <div className="flex justify-between mt-4 mb-2 text-sm font-mono text-foreground">
-            <div className="flex gap-6">
+          <div className="flex flex-col gap-2 mt-4 mb-2 text-sm font-mono text-foreground md:flex-row md:justify-between">
+            <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
               <span>
                 <strong>Name:</strong>{" "}
                 <span className="inline-block border-b border-grid-border w-40" />
@@ -48,7 +48,7 @@ const WorksheetSheet = forwardRef<HTMLDivElement, WorksheetSheetProps>(
                 <span className="inline-block border-b border-grid-border w-32" />
               </span>
             </div>
-            <div className="flex gap-6">
+            <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
               <span>
                 <strong>Start Time:</strong>{" "}
                 <span className="inline-block border-b border-grid-border w-24" />
@@ -74,7 +74,7 @@ const WorksheetSheet = forwardRef<HTMLDivElement, WorksheetSheetProps>(
 
         {/* Footer */}
         {!isAnswerKey && (
-          <div className="flex justify-between items-end mt-8 text-sm font-mono text-muted-foreground">
+          <div className="flex flex-col-reverse items-start gap-4 mt-8 text-sm font-mono text-muted-foreground md:flex-row md:items-end md:justify-between">
             <div className="border border-grid-border rounded-full w-12 h-12" />
             <span className="font-semibold">Instructor&apos;s Signature</span>
           </div>

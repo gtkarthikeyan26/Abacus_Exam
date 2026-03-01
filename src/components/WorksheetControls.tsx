@@ -34,14 +34,14 @@ const WorksheetControls = ({
     onConfigChange({ ...config, ...partial });
 
   return (
-    <div className="no-print bg-controls-bg border border-controls-border rounded-lg p-6 mb-8 max-w-[210mm] mx-auto">
+    <div className="no-print bg-controls-bg border border-controls-border rounded-lg p-4 sm:p-6 mb-6 w-full max-w-[900px] mx-auto">
       <h2 className="text-lg font-semibold font-mono mb-4 text-foreground">
         Worksheet Settings
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-5">
         {/* Title */}
-        <div className="col-span-2 md:col-span-3 lg:col-span-5">
+        <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-5">
           <label className="block text-sm font-medium text-muted-foreground mb-1">
             Title
           </label>
@@ -116,7 +116,7 @@ const WorksheetControls = ({
       </div>
 
       {/* Toggles */}
-      <div className="flex flex-wrap gap-6 mb-5">
+      <div className="flex flex-col gap-4 mb-5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <Switch
             checked={showAnswerKey}
@@ -150,26 +150,28 @@ const WorksheetControls = ({
             {grids.map((grid, gIdx) => (
               <div key={gIdx}>
                 <p className="text-xs font-mono text-muted-foreground mb-1">Grid {gIdx + 1}</p>
-                <table className="border-collapse">
-                  <tbody>
-                    {grid.numbers.map((row, rIdx) => (
-                      <tr key={rIdx}>
-                        {row.map((num, cIdx) => (
-                          <td key={cIdx} className="p-0.5">
-                            <input
-                              type="number"
-                              value={num}
-                              onChange={(e) =>
-                                onGridCellChange(gIdx, rIdx, cIdx, +e.target.value || 0)
-                              }
-                              className="w-12 h-8 text-center text-sm font-mono border border-input rounded bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
-                            />
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="overflow-x-auto">
+                  <table className="border-collapse">
+                    <tbody>
+                      {grid.numbers.map((row, rIdx) => (
+                        <tr key={rIdx}>
+                          {row.map((num, cIdx) => (
+                            <td key={cIdx} className="p-0.5">
+                              <input
+                                type="number"
+                                value={num}
+                                onChange={(e) =>
+                                  onGridCellChange(gIdx, rIdx, cIdx, +e.target.value || 0)
+                                }
+                                className="w-12 h-8 text-center text-sm font-mono border border-input rounded bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+                              />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             ))}
           </div>
@@ -177,9 +179,9 @@ const WorksheetControls = ({
       )}
 
       {/* Actions */}
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         {!useCustomNumbers && (
-          <Button onClick={onGenerate} className="gap-2">
+          <Button onClick={onGenerate} className="gap-2 w-full sm:w-auto">
             <RefreshCw className="w-4 h-4" />
             Generate New Sheet
           </Button>
@@ -188,7 +190,7 @@ const WorksheetControls = ({
           variant="outline"
           onClick={onDownloadPdf}
           disabled={isGeneratingPdf}
-          className="gap-2"
+          className="gap-2 w-full sm:w-auto"
         >
           <Download className="w-4 h-4" />
           {isGeneratingPdf ? "Generating…" : "Download as PDF"}
